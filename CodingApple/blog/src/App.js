@@ -9,12 +9,6 @@ function App() {
   let [likeCnt, setLikeCnt] = useState([0, 0, 0]);
   let [modal, setModal] = useState(false);
 
-
-  function clickLike(i) { 
-    likeCnt[i]++;
-    setLikeCnt(likeCnt);
-  };
-
   function clickBtn() {
     let copy = [...title];
     copy[0] = '여자코트 추천';
@@ -48,18 +42,22 @@ function App() {
       </div> */}
 
       {
-        modal == true ? <Modal/> : null
+        modal == true ? <Modal title={title} modify={ clickBtn } /> : null
       }
 
       {
-        title.map(function (a, i) { 
+        title.map(function (data, i) { 
           return (
             <div className="list" key={ i }>
-              <h4>{a} <span onClick={() => {
+              <h4 onClick={() => { setModal(!modal) }}>{data}
+                <span onClick={() => {
                 let copy = [...likeCnt]
                 copy[i]++
                 setLikeCnt(copy);
-              } }>👍🏻</span> { likeCnt[i] } </h4>
+                }}>
+                  👍🏻
+                </span> {likeCnt[i]}
+              </h4>
                <p>2022.08.29 발행</p>
             </div>
           )
@@ -77,12 +75,18 @@ function App() {
 // 3. 자주 변경되는 것들
 // 단점: state를 가져다 쓸 때, 문제가 있다. (다른 함수에서 선언한 state를 사용할 수 없음)
 
-function Modal() { 
+
+// 부모 -> 자식 state 넘겨주기 : props 사용
+// <자식태그 props이름 = {state 이름}>
+// 자식 태그에서 파라미터.props이름 으로 사용
+
+function Modal(props) { 
   return (
     <div className='modal'>
-        <h4>제목</h4>
+      <h4>{props.title[0]}</h4>
         <p>날짜</p>
-        <p>상세내용</p>
+      <p>상세내용</p>
+      <button>글수정</button>
     </div>
   )
 }
