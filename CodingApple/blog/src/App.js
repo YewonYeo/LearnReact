@@ -1,5 +1,6 @@
 /* eslint-disable */
 
+import { hover } from "@testing-library/user-event/dist/hover";
 import React, { useState } from "react";
 import "./App.css";
 
@@ -33,32 +34,10 @@ function App() {
     setTitle(copy);
   }
 
-  // class 문법
-  class Modal2 extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        name: "kim",
-        age: 20,
-      };
-    }
-    render() {
-      return (
-        <div>
-          안녕 {this.state.name} {this.props}
-          <button
-            onClick={() => {
-              this.setState({
-                age: 21,
-              });
-            }}
-          >
-            버튼
-          </button>
-        </div>
-      );
-    }
-  }
+  document.onload = function () {
+    console.log(document.getElementById("btn"));
+    console.log("hi");
+  };
 
   return (
     // JSX: js파일에서 html 대신 쓰는 것
@@ -66,7 +45,9 @@ function App() {
       <div className="nav">
         <h4>Yeeeh's Blog</h4>
       </div>
-      <button onClick={clickBtn}>글수정</button>
+      <button id="btn" onClick={clickBtn}>
+        글수정
+      </button>
       <button
         onClick={() => {
           let copy = [...title];

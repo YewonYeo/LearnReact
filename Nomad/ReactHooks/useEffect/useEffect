@@ -1,0 +1,12 @@
+useEffect(function () {}, [dependency]);
+/*
+useEffect는 componentDidMount(), componentWillUnmount, componentDidUpdate()와 비슷하다.
+
+1번째 인자: 함수
+=> componentDidMount, componentDidUpdate 때 호출된다.
+
+2번째 인자: dependency
+=> 이에 해당하는 값이 변경되는 경우에만 1번째 인자인 함수 호출
+=> 마운트 될때만 함수를 실행하고 싶은 경우, dependency를 []로 한다.
+
+*/
